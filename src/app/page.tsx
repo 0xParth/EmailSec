@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1 flex flex-col justify-center">
+      <main className="flex-1 flex flex-col items-center justify-center">
         <div className="container relative pb-10">
           <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center py-8 md:py-12 lg:py-24">
             <div className="flex flex-col items-center gap-2">
@@ -47,7 +47,7 @@ export default function Home() {
             </div>
           </section>
 
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl px-4">
             {error && (
                 <Alert variant="destructive">
                   <AlertTriangle className="h-4 w-4" />
