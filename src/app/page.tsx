@@ -31,10 +31,10 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 flex flex-col justify-center">
         <div className="container relative pb-10">
-          <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 py-8 md:py-12 lg:py-24">
-            <div className="flex flex-col items-center gap-2 text-center">
+          <section className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center py-8 md:py-12 lg:py-24">
+            <div className="flex flex-col items-center gap-2">
               <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl font-headline">
                 Uncover Your Email Security Posture
               </h1>
