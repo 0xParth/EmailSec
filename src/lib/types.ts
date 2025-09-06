@@ -9,6 +9,11 @@ export type RecordAnalysis = {
   }[];
 };
 
+export type RemediationStep = {
+  title: string;
+  description: string;
+};
+
 export type AnalysisResult = {
   domain: string;
   dkimSelector: string;
@@ -16,5 +21,5 @@ export type AnalysisResult = {
   dkim: RecordAnalysis;
   dmarc: RecordAnalysis;
   vulnerabilities: string[];
-  remediationGuidance: string;
+  remediationGuidance: RemediationStep[];
 };

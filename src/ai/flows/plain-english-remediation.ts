@@ -21,11 +21,15 @@ const RemediationInputSchema = z.object({
 });
 export type RemediationInput = z.infer<typeof RemediationInputSchema>;
 
+const RemediationStepSchema = z.object({
+  title: z.string().describe('A short, clear title for the remediation step.'),
+  description: z.string().describe('A detailed, user-friendly explanation of what the step is, why it is important, and how to perform it.'),
+});
+
 const RemediationOutputSchema = z.object({
-  remediationGuidance: z
-    .string()
+  remediationGuidance: z.array(RemediationStepSchema)
     .describe(
-      'Step-by-step guidance in plain English for fixing the detected vulnerabilities.'
+      'An array of step-by-step guidance objects in plain English for fixing the detected vulnerabilities.'
     ),
 });
 export type RemediationOutput = z.infer<typeof RemediationOutputSchema>;
@@ -45,7 +49,7 @@ const prompt = ai.definePrompt({
 Vulnerability Report:
 {{{vulnerabilityReport}}}
 
-Provide remediation steps in plain English that are easy to understand for both technical and non-technical users. Do not use any markdown formatting (e.g., no asterisks for bolding). The output should be clean text.`,
+Provide remediation steps in plain English that are easy to understand for both technical and non-technical users. The output must be an array of objects, where each object has a 'title' and a 'description'. Do not use any markdown formatting (e.g., no asterisks for bolding). The output should be clean text.`,
 });
 
 const remediationFlow = ai.defineFlow(
