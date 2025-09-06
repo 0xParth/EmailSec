@@ -57,12 +57,6 @@ export default function Home() {
             </div>
           )}
 
-          {result && !isPending && (
-            <section className="mx-auto max-w-5xl">
-              <ResultsDashboard result={result} />
-            </section>
-          )}
-
           {isPending && (
             <div className="mx-auto flex max-w-4xl justify-center">
               <div className="flex flex-col items-center gap-4">
@@ -89,6 +83,12 @@ export default function Home() {
                 <p className="text-muted-foreground">Analyzing domain...</p>
               </div>
             </div>
+          )}
+
+          {result && !isPending && (
+            <section className="mx-auto max-w-7xl">
+              <ResultsDashboard result={result} />
+            </section>
           )}
         </div>
       </main>
