@@ -15,11 +15,11 @@ export default function Home() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleAnalysis = (data: { domain: string; dkimSelector: string }) => {
+  const handleAnalysis = (data: { domain: string }) => {
     setError(null);
     setResult(null);
     startTransition(async () => {
-      const response = await analyzeDomain(data.domain, data.dkimSelector);
+      const response = await analyzeDomain(data.domain);
       if (response.error) {
         setError(response.error);
       } else {

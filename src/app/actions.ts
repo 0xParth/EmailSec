@@ -7,11 +7,11 @@ import type { AnalysisResult } from '@/lib/types';
 
 export async function analyzeDomain(
   domain: string,
-  dkimSelector: string
 ): Promise<{ data: AnalysisResult | null; error: string | null }> {
   try {
-    if (!domain || !dkimSelector) {
-        return { data: null, error: 'Domain and DKIM selector are required.' };
+    const dkimSelector = 'default';
+    if (!domain) {
+        return { data: null, error: 'Domain is required.' };
     }
 
     const [spf, dkim, dmarc] = await Promise.all([
@@ -21,9 +21,9 @@ export async function analyzeDomain(
     ]);
     
     const aiVulnerabilities = await detectVulnerabilities({
-        spfRecord: spf.record,
-        dkimRecord: dkim.record,
-        dmarcRecord: dmarc.record,
+        spfRecord: spf.record || undefined,
+        dkimRecord: dkim.record || undefined,
+        dmarcRecord: dmarc.record || undefined,
     });
     
     const allFindings = [

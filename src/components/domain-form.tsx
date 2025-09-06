@@ -11,7 +11,6 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const formSchema = z.object({
   domain: z.string().min(1, 'Domain is required.').refine(v => !v.startsWith('http'), 'Please enter a domain name, not a URL.'),
-  dkimSelector: z.string().min(1, 'DKIM selector is required.'),
 });
 
 type DomainFormValues = z.infer<typeof formSchema>;
@@ -26,7 +25,6 @@ export function DomainForm({ onAnalyze, isPending }: DomainFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       domain: '',
-      dkimSelector: 'default',
     },
   });
 
@@ -35,7 +33,7 @@ export function DomainForm({ onAnalyze, isPending }: DomainFormProps) {
       <CardContent className="pt-6">
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onAnalyze)} className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
-                <div className="md:col-span-5">
+                <div className="md:col-span-10">
                     <FormField
                         control={form.control}
                         name="domain"
@@ -44,21 +42,6 @@ export function DomainForm({ onAnalyze, isPending }: DomainFormProps) {
                             <FormLabel>Domain</FormLabel>
                             <FormControl>
                             <Input placeholder="example.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                        )}
-                    />
-                </div>
-                <div className="md:col-span-5">
-                    <FormField
-                        control={form.control}
-                        name="dkimSelector"
-                        render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>DKIM Selector</FormLabel>
-                            <FormControl>
-                            <Input placeholder="default" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
