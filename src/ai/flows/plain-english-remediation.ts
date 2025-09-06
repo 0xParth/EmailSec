@@ -45,7 +45,7 @@ const prompt = ai.definePrompt({
 Vulnerability Report:
 {{{vulnerabilityReport}}}
 
-Provide remediation steps in plain English that are easy to understand for both technical and non-technical users.`,
+Provide remediation steps in plain English that are easy to understand for both technical and non-technical users. Do not use any markdown formatting (e.g., no asterisks for bolding). The output should be clean text.`,
 });
 
 const remediationFlow = ai.defineFlow(
